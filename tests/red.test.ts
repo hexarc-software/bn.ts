@@ -162,7 +162,7 @@ describe("bn.ts/Reduction context", () => {
   }
 
   testMethod("Plain", BigNumber.red);
-  // testMethod("Montgomery", BN.mont);
+  testMethod("Montgomery", BigNumber.mont);
 
   describe("Pseudo-Mersenne Primes", () => {
     it("should reduce numbers mod k256", () => {

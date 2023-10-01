@@ -20,7 +20,7 @@ export interface BNConstructor {
 
   red(value: BN | IPrimeName): ReductionContext;
 
-  mont(num: BN | IPrimeName): ReductionContext;
+  mont(value: BN | IPrimeName): ReductionContext;
 
   isBN(value: any): value is BN;
 

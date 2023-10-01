@@ -2643,7 +2643,10 @@ function jumboMulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
 
 function allocate(ArrayType: typeof Array, size: number): number[];
 function allocate(ArrayType: typeof Buffer, size: number): Buffer;
-function allocate<T extends typeof Buffer | typeof Array>(ArrayType: T, size: number): T extends typeof Buffer ? Buffer : number[];
+function allocate<T extends typeof Buffer | typeof Array>(
+  ArrayType: T,
+  size: number
+): T extends typeof Buffer ? Buffer : number[];
 function allocate(ArrayType: typeof Buffer | typeof Array, size: number): Buffer | number[] {
   if ("allocUnsafe" in ArrayType) {
     return ArrayType.allocUnsafe(size);
