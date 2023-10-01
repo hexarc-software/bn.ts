@@ -1,4 +1,5 @@
 import { Red } from "./red";
+import { Mont } from "./mont";
 import { assert } from "./utils";
 import { groupBases, groupSizes, zeros } from "./constants";
 import type { BN, IPrimeName, Endianness, CmpResult, BNConstructor } from "./types";
@@ -9,6 +10,10 @@ export class BigNumber {
 
   static red(value: BigNumber | IPrimeName): Red {
     return new Red(value);
+  }
+
+  static mont(value: BigNumber | IPrimeName): Mont {
+    return new Mont(value);
   }
 
   static isBN(value: any): value is BigNumber {
@@ -1973,11 +1978,6 @@ export function move(dest: BigNumber, src: BigNumber) {
   dest.negative = src.negative;
   dest.red = src.red;
 }
-
-// TODO: Check this
-// if (!Math.imul) {
-//   comb10MulTo = smallMulTo;
-// }
 
 function comb10MulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
   const a = self.words;

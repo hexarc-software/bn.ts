@@ -1,5 +1,5 @@
 import BN from "../src";
-import * as assert from "assert";
+import { strict as assert } from "assert";
 
 describe("Basic tests", () => {
   it("Sum two numbers", () => {

@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import { strict as assert } from "assert";
 import { IPrimeName } from "../src";
 import { Red } from "../src/red";
 import { prime } from "../src/primes";
@@ -256,8 +256,8 @@ describe('BN.js/Reduction context', function () {
     var k = bits2int(t, q);
     var expectedR = '89ec4bb1400eccff8e7d9aa515cd1de7803f2daff09693ee7fd1353e' +
       '90a68307';
-    // var r = g.toRed(BigNumber.mont(p)).redPow(k).fromRed().mod(q);
-    // assert.equal(r.toString(16), expectedR);
+    var r = g.toRed(BigNumber.mont(p)).redPow(k).fromRed().mod(q);
+    assert.equal(r.toString(16), expectedR);
   });
 
   it('K256.split for 512 bits number should return equal numbers', function () {

@@ -1,12 +1,28 @@
 {
   "name": "bn.ts",
   "version": "0.1.0",
-  "description": "",
+  "description": "Modern big number implementation in TypeScript",
   "author": "Max Koverdyaev",
   "license": "MIT",
-  "main": "index.js",
+  "keywords": [
+    "BN",
+    "Big Number",
+    "BigNum",
+    "TypeScript"
+  ],
+  "homepage": "https://github.com/hexarc/bn.ts",
+  "bugs": {
+    "url": "https://github.com/hexarc/bn.ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexarc/bn.ts.git"
+  },
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "npx ts-mocha tests/*"
+    "test": "npx ts-mocha tests/*",
+    "build": "npx tsc"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.2",

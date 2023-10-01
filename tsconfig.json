@@ -1,6 +1,13 @@
 {
     "compilerOptions": {
         "strict": true,
-        "strictPropertyInitialization": false
-    }
+        "strictPropertyInitialization": false,
+        "declaration": true,
+        "target": "ES6",
+        "module": "CommonJS",
+        "outDir": "lib",
+    },
+    "include": [
+        "./src"
+    ]
 }
