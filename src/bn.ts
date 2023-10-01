@@ -2550,9 +2550,8 @@ function comb10MulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
     out.length++;
   }
   return out;
-};
+}
 
-// https://github.com/indutny/bn.js/blob/5df40f81ea8afb835b909bb7c21e0833cdeb6a30/lib/bn.js#L1087
 function smallMulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
   out.negative = num.negative ^ self.negative;
   let len = (self.length + num.length) | 0;
@@ -2595,7 +2594,6 @@ function smallMulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
   return out._strip();
 }
 
-// https://github.com/indutny/bn.js/blob/5df40f81ea8afb835b909bb7c21e0833cdeb6a30/lib/bn.js#L1709C18-L1709C18
 function bigMulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
   out.negative = num.negative ^ self.negative;
   out.length = self.length + num.length;
@@ -2639,22 +2637,21 @@ function bigMulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
   return out._strip();
 }
 
-// https://github.com/indutny/bn.js/blob/5df40f81ea8afb835b909bb7c21e0833cdeb6a30/lib/bn.js#L1750
 function jumboMulTo(self: BigNumber, num: BigNumber, out: BigNumber) {
   return bigMulTo(self, num, out);
 }
 
-export function allocate(ArrayType: typeof Array, size: number): number[];
-export function allocate(ArrayType: typeof Buffer, size: number): Buffer;
-export function allocate<T extends typeof Buffer | typeof Array>(ArrayType: T, size: number): T extends typeof Buffer ? Buffer : number[];
-export function allocate(ArrayType: typeof Buffer | typeof Array, size: number): Buffer | number[] {
+function allocate(ArrayType: typeof Array, size: number): number[];
+function allocate(ArrayType: typeof Buffer, size: number): Buffer;
+function allocate<T extends typeof Buffer | typeof Array>(ArrayType: T, size: number): T extends typeof Buffer ? Buffer : number[];
+function allocate(ArrayType: typeof Buffer | typeof Array, size: number): Buffer | number[] {
   if ("allocUnsafe" in ArrayType) {
     return ArrayType.allocUnsafe(size);
   }
   return new ArrayType(size);
-};
+}
 
-export function parseHex4Bits(string: string, index: number): number {
+function parseHex4Bits(string: string, index: number): number {
   const char = string.charCodeAt(index);
   // "0" - "9"
   if (char >= 48 && char <= 57) {
@@ -2670,7 +2667,7 @@ export function parseHex4Bits(string: string, index: number): number {
   }
 }
 
-export function parseBase(str: string, start: number, end: number, mul: number) {
+function parseBase(str: string, start: number, end: number, mul: number) {
   let r = 0;
   let b = 0;
   let len = Math.min(str.length, end);
@@ -2697,7 +2694,7 @@ export function parseBase(str: string, start: number, end: number, mul: number) 
   return r;
 }
 
-export function parseHexByte(string: string, lowerBound: number, index: number): number {
+function parseHexByte(string: string, lowerBound: number, index: number): number {
   let value = parseHex4Bits(string, index);
   if (index - 1 >= lowerBound) {
     value |= parseHex4Bits(string, index - 1) << 4;
