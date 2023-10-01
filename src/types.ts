@@ -227,6 +227,8 @@ export interface BN {
 }
 
 export interface RedBN extends BN {
+  clone(): RedBN;
+
   fromRed(): BN;
 
   redAdd(b: RedBN): RedBN;
