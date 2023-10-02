@@ -194,7 +194,7 @@ export class BigNumber {
     assert(reqLength > 0, "Requested array length <= 0");
 
     const res = allocate(ArrayType, reqLength);
-    switch (endian) {
+    switch (endian ?? "be") {
       case "be":
         this._toArrayLikeBE(res);
         break;

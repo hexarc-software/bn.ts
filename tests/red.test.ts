@@ -1,17 +1,17 @@
 import { strict as assert } from "assert";
 import { Red } from "../src/red";
 import { prime } from "../src/primes";
-import { BigNumber } from "../src/bn";
+import { BigNumber as BN } from "../src/bn";
 import type { IPrimeName } from "../src";
 
-describe("bn.ts/Reduction context", () => {
-  function testMethod(name: string, fn: (num: IPrimeName | BigNumber) => Red) {
+describe("BN.ts/Reduction context", () => {
+  function testMethod(name: string, fn: (num: IPrimeName | BN) => Red) {
     describe(name + " method", () => {
       it("should support add, iadd, sub, isub operations", () => {
-        const p = new BigNumber(257);
+        const p = new BN(257);
         const m = fn(p);
-        const a = new BigNumber(123).toRed(m);
-        const b = new BigNumber(231).toRed(m);
+        const a = new BN(123).toRed(m);
+        const b = new BN(231).toRed(m);
 
         assert.equal(a.redAdd(b).fromRed().toString(10), "97");
         assert.equal(a.redSub(b).fromRed().toString(10), "149");
@@ -23,37 +23,37 @@ describe("bn.ts/Reduction context", () => {
       });
 
       it("should support pow and mul operations", () => {
-        const p192 = new BigNumber(
+        const p192 = new BN(
           "fffffffffffffffffffffffffffffffeffffffffffffffff",
           16);
         const m = fn(p192);
-        const a = new BigNumber(123);
-        const b = new BigNumber(231);
+        const a = new BN(123);
+        const b = new BN(231);
         const c = a.toRed(m).redMul(b.toRed(m)).fromRed();
         assert(c.cmp(a.mul(b).mod(p192)) === 0);
 
-        assert.equal(a.toRed(m).redPow(new BigNumber(0)).fromRed()
-          .cmp(new BigNumber(1)), 0);
-        assert.equal(a.toRed(m).redPow(new BigNumber(3)).fromRed()
+        assert.equal(a.toRed(m).redPow(new BN(0)).fromRed()
+          .cmp(new BN(1)), 0);
+        assert.equal(a.toRed(m).redPow(new BN(3)).fromRed()
           .cmp(a.sqr().mul(a)), 0);
-        assert.equal(a.toRed(m).redPow(new BigNumber(4)).fromRed()
+        assert.equal(a.toRed(m).redPow(new BN(4)).fromRed()
           .cmp(a.sqr().sqr()), 0);
-        assert.equal(a.toRed(m).redPow(new BigNumber(8)).fromRed()
+        assert.equal(a.toRed(m).redPow(new BN(8)).fromRed()
           .cmp(a.sqr().sqr().sqr()), 0);
-        assert.equal(a.toRed(m).redPow(new BigNumber(9)).fromRed()
+        assert.equal(a.toRed(m).redPow(new BN(9)).fromRed()
           .cmp(a.sqr().sqr().sqr().mul(a)), 0);
-        assert.equal(a.toRed(m).redPow(new BigNumber(17)).fromRed()
+        assert.equal(a.toRed(m).redPow(new BN(17)).fromRed()
           .cmp(a.sqr().sqr().sqr().sqr().mul(a)), 0);
         assert.equal(
-          a.toRed(m).redPow(new BigNumber("deadbeefabbadead", 16)).fromRed()
+          a.toRed(m).redPow(new BN("deadbeefabbadead", 16)).fromRed()
             .toString(16),
           "3aa0e7e304e320b68ef61592bcb00341866d6fa66e11a4d6");
       });
 
       it("should sqrtm numbers", () => {
-        let p = new BigNumber(263);
+        let p = new BN(263);
         let m = fn(p);
-        let q = new BigNumber(11).toRed(m);
+        let q = new BN(11).toRed(m);
 
         let qr = q.redSqrt();
         assert.equal(qr.redSqr().cmp(q), 0);
@@ -61,12 +61,12 @@ describe("bn.ts/Reduction context", () => {
         qr = q.redSqrt();
         assert.equal(qr.redSqr().cmp(q), 0);
 
-        p = new BigNumber(
+        p = new BN(
           "fffffffffffffffffffffffffffffffeffffffffffffffff",
           16);
         m = fn(p);
 
-        q = new BigNumber(13).toRed(m);
+        q = new BN(13).toRed(m);
         qr = q.redSqrt();
         assert.equal(qr.redSqr().cmp(q), 0);
 
@@ -74,25 +74,25 @@ describe("bn.ts/Reduction context", () => {
         assert.equal(qr.redSqr().cmp(q), 0);
 
         // Tonelli-shanks
-        p = new BigNumber(13);
+        p = new BN(13);
         m = fn(p);
-        q = new BigNumber(10).toRed(m);
+        q = new BN(10).toRed(m);
         assert.equal(q.redSqrt().fromRed().toString(10), "7");
       });
 
       it("should invm numbers", () => {
-        const p = new BigNumber(257);
+        const p = new BN(257);
         const m = fn(p);
-        const a = new BigNumber(3).toRed(m);
+        const a = new BN(3).toRed(m);
         const b = a.redInvm();
         assert.equal(a.redMul(b).fromRed().toString(16), "1");
       });
 
       it("should invm numbers (regression)", () => {
-        const p = new BigNumber(
+        const p = new BN(
           "ffffffff00000001000000000000000000000000ffffffffffffffffffffffff",
           16);
-        const a = new BigNumber(
+        const a = new BN(
           "e1d969b8192fbac73ea5b7921896d6a2263d4d4077bb8e5055361d1f7f8163f3",
           16);
 
@@ -103,13 +103,13 @@ describe("bn.ts/Reduction context", () => {
       });
 
       it("should imul numbers", () => {
-        const p = new BigNumber(
+        const p = new BN(
           "fffffffffffffffffffffffffffffffeffffffffffffffff",
           16);
         const m = fn(p);
 
-        const a = new BigNumber("deadbeefabbadead", 16);
-        const b = new BigNumber("abbadeadbeefdead", 16);
+        const a = new BN("deadbeefabbadead", 16);
+        const b = new BN("abbadeadbeefdead", 16);
         const c = a.mul(b).mod(p);
 
         assert.equal(a.toRed(m).redIMul(b.toRed(m)).fromRed().toString(16),
@@ -117,68 +117,68 @@ describe("bn.ts/Reduction context", () => {
       });
 
       it("should pow(base, 0) == 1", () => {
-        const base = new BigNumber(256).toRed(BigNumber.red("k256"));
-        const exponent = new BigNumber(0);
+        const base = new BN(256).toRed(BN.red("k256"));
+        const exponent = new BN(0);
         const result = base.redPow(exponent);
         assert.equal(result.toString(), "1");
       });
 
       it("should shl numbers", () => {
-        const base = new BigNumber(256).toRed(BigNumber.red("k256"));
+        const base = new BN(256).toRed(BN.red("k256"));
         const result = base.redShl(1);
         assert.equal(result.toString(), "512");
       });
 
       it("should reduce when converting to red", () => {
-        const p = new BigNumber(257);
+        const p = new BN(257);
         const m = fn(p);
-        const a = new BigNumber(5).toRed(m);
+        const a = new BN(5).toRed(m);
 
         assert.doesNotThrow(() => {
-          const b = a.redISub(new BigNumber(512).toRed(m));
-          b.redISub(new BigNumber(512).toRed(m));
+          const b = a.redISub(new BN(512).toRed(m));
+          b.redISub(new BN(512).toRed(m));
         });
       });
 
       it("redNeg and zero value", () => {
-        const a = new BigNumber(0).toRed(BigNumber.red("k256")).redNeg();
+        const a = new BN(0).toRed(BN.red("k256")).redNeg();
         assert.equal(a.isZero(), true);
       });
 
       it("should not allow modulus <= 1", () => {
         assert.throws(() => {
-          BigNumber.red(new BigNumber(0));
+          BN.red(new BN(0));
         }, /^Error: modulus must be greater than 1$/);
 
         assert.throws(() => {
-          BigNumber.red(new BigNumber(1));
+          BN.red(new BN(1));
         }, /^Error: modulus must be greater than 1$/);
 
         assert.doesNotThrow(() => {
-          BigNumber.red(new BigNumber(2));
+          BN.red(new BN(2));
         });
       });
     });
   }
 
-  testMethod("Plain", BigNumber.red);
-  testMethod("Montgomery", BigNumber.mont);
+  testMethod("Plain", BN.red);
+  testMethod("Montgomery", BN.mont);
 
   describe("Pseudo-Mersenne Primes", () => {
     it("should reduce numbers mod k256", () => {
       const p = prime("k256");
 
-      assert.equal(p.ireduce(new BigNumber(0xdead)).toString(16), "dead");
-      assert.equal(p.ireduce(new BigNumber("deadbeef", 16)).toString(16), "deadbeef");
+      assert.equal(p.ireduce(new BN(0xdead)).toString(16), "dead");
+      assert.equal(p.ireduce(new BN("deadbeef", 16)).toString(16), "deadbeef");
 
-      const num = new BigNumber(
+      const num = new BN(
         "fedcba9876543210fedcba9876543210dead" +
         "fedcba9876543210fedcba9876543210dead",
         16);
       let exp = num.mod(p.p).toString(16);
       assert.equal(p.ireduce(num).toString(16), exp);
 
-      const regr = new BigNumber(
+      const regr = new BN(
         "f7e46df64c1815962bf7bc9c56128798" +
         "3f4fcef9cb1979573163b477eab93959" +
         "335dfb29ef07a4d835d22aa3b6797760" +
@@ -190,17 +190,17 @@ describe("bn.ts/Reduction context", () => {
     });
 
     it("should not fail to invm number mod k256", () => {
-      let regr2 = new BigNumber(
+      let regr2 = new BN(
         "6c150c4aa9a8cf1934485d40674d4a7cd494675537bda36d49405c5d2c6f496f", 16);
-      regr2 = regr2.toRed(BigNumber.red("k256"));
+      regr2 = regr2.toRed(BN.red("k256"));
       assert.equal(regr2.redInvm().redMul(regr2).fromRed().cmpn(1), 0);
     });
 
     it("should correctly square the number", () => {
       const p = prime("k256").p;
-      const red = BigNumber.red("k256");
+      const red = BN.red("k256");
 
-      const n = new BigNumber(
+      const n = new BN(
         "9cd8cb48c3281596139f147c1364a3ed" +
         "e88d3f310fdb0eb98c924e599ca1b3c9",
         16);
@@ -211,15 +211,15 @@ describe("bn.ts/Reduction context", () => {
     });
 
     it("redISqr should return right result", () => {
-      const n = new BigNumber("30f28939", 16);
-      const actual = n.toRed(BigNumber.red("k256")).redISqr().fromRed();
+      const n = new BN("30f28939", 16);
+      const actual = n.toRed(BN.red("k256")).redISqr().fromRed();
       assert.equal(actual.toString(16), "95bd93d19520eb1");
     });
   });
 
   it("should avoid 4.1.0 regression", () => {
-    function bits2int(obits: Buffer, q: BigNumber) {
-      const bits = new BigNumber(obits);
+    function bits2int(obits: Buffer, q: BN) {
+      const bits = new BN(obits);
       const shift = (obits.length << 3) - q.bitLength();
       if (shift > 0) {
         bits.ishrn(shift);
@@ -230,7 +230,7 @@ describe("bn.ts/Reduction context", () => {
     const t = Buffer.from("aff1651e4cd6036d57aa8b2a05ccf1a9d5a40166340ecbbdc55" +
       "be10b568aa0aa3d05ce9a2fcec9df8ed018e29683c6051cb83e" +
       "46ce31ba4edb045356a8d0d80b", "hex");
-    const g = new BigNumber(
+    const g = new BN(
       "5c7ff6b06f8f143fe8288433493e4769c4d988ace5be25a0e24809670" +
       "716c613d7b0cee6932f8faa7c44d2cb24523da53fbe4f6ec3595892d1" +
       "aa58c4328a06c46a15662e7eaa703a1decf8bbb2d05dbe2eb956c142a" +
@@ -241,7 +241,7 @@ describe("bn.ts/Reduction context", () => {
       "99874393cd4d832186800654760e1e34c09e4d155179f9ec0dc4473f9" +
       "96bdce6eed1cabed8b6f116f7ad9cf505df0f998e34ab27514b0ffe7",
       16);
-    const p = new BigNumber(
+    const p = new BN(
       "9db6fb5951b66bb6fe1e140f1d2ce5502374161fd6538df1648218642" +
       "f0b5c48c8f7a41aadfa187324b87674fa1822b00f1ecf8136943d7c55" +
       "757264e5a1a44ffe012e9936e00c1d3e9310b01c7d179805d3058b2a9" +
@@ -252,29 +252,29 @@ describe("bn.ts/Reduction context", () => {
       "3292b5509ca8caa77a2adfc7bfd77dda6f71125a7456fea153e433256" +
       "a2261c6a06ed3693797e7995fad5aabbcfbe3eda2741e375404ae25b",
       16);
-    const q = new BigNumber("f2c3119374ce76c9356990b465374a17f23f9ed35089bd969f61c6dde" +
+    const q = new BN("f2c3119374ce76c9356990b465374a17f23f9ed35089bd969f61c6dde" +
       "9998c1f", 16);
     const k = bits2int(t, q);
     const expectedR = "89ec4bb1400eccff8e7d9aa515cd1de7803f2daff09693ee7fd1353e" +
       "90a68307";
-    const r = g.toRed(BigNumber.mont(p)).redPow(k).fromRed().mod(q);
+    const r = g.toRed(BN.mont(p)).redPow(k).fromRed().mod(q);
     assert.equal(r.toString(16), expectedR);
   });
 
   it("K256.split for 512 bits number should return equal numbers", () => {
-    const red = BigNumber.red("k256");
-    const input = new BigNumber(1).iushln(512).subn(1);
+    const red = BN.red("k256");
+    const input = new BN(1).iushln(512).subn(1);
     assert.equal(input.bitLength(), 512);
 
-    const output = new BigNumber(0);
+    const output = new BN(0);
     red.prime!.split(input, output);
     assert.equal(input.cmp(output), 0);
   });
 
   it("imod should change host object", () => {
-    const red = BigNumber.red(new BigNumber(13));
-    const a = new BigNumber(2).toRed(red);
-    const b = new BigNumber(7).toRed(red);
+    const red = BN.red(new BN(13));
+    const a = new BN(2).toRed(red);
+    const b = new BN(7).toRed(red);
     const c = a.redIMul(b);
 
     assert.equal(a.toNumber(), 1);
