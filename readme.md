@@ -12,13 +12,13 @@ A modern big number implementation in TypeScript. It's based on [bn.js](https://
 ## Install with npm:
 
 ```sh
-npm install --save bn.ts
+npm install --save @hexarc/bn.ts
 ```
 
 ## Usage
 
 ```ts
-import BN from "bn.ts";
+import BN from "@hexarc/bn.ts";
 
 const a = new BN("dead", 16);
 const b = new BN("101010", 2);

@@ -1,5 +1,5 @@
 {
-  "name": "bn.ts",
+  "name": "@hexarc/bn.ts",
   "version": "0.1.0",
   "description": "Modern big number implementation in TypeScript",
   "author": "Max Koverdyaev",
