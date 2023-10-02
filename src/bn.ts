@@ -1736,11 +1736,11 @@ export class BigNumber {
     this.length = Math.max(this.length, i + 1);
 
     return this;
-  };
+  }
 
   _countBits(w: number) {
     return 32 - Math.clz32(w);
-  };
+  }
 
   _zeroBits(w: number) {
     // Short-cut
@@ -1892,7 +1892,7 @@ export class BigNumber {
       div: q || null!,
       mod: a
     };
-  };
+  }
 
   // This is reduced incarnation of the binary EEA
   // above, designated to invert members of the

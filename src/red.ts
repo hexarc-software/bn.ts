@@ -172,7 +172,7 @@ export class Red {
     } else {
       return this.imod(inv);
     }
-  };
+  }
 
   pow(a: BigNumber, num: BigNumber) {
     if (num.isZero()) return new BigNumber(1).toRed(this);

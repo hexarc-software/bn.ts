@@ -20,7 +20,7 @@ export class MPrime {
     const tmp = new BigNumber(null);
     tmp.words = new Array(Math.ceil(this.n / 13));
     return tmp;
-  };
+  }
 
   public ireduce(num: BigNumber) {
     // Assumes that `num` is less than `P^2`
