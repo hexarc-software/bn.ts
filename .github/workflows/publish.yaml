@@ -1,0 +1,54 @@
+name: Publish
+
+on: 
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Get Ref (Optional)
+        required: false
+
+jobs:
+  test:
+    name: Test and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch code (Latest)
+        uses: actions/checkout@v4
+        if: github.event.inputs.git-ref == ''
+        with:
+          fetch-depth: 1
+
+      - name: Fetch code (Custom Ref)
+        uses: actions/checkout@v4
+        if: github.event.inputs.git-ref != ''
+        with:
+          fetch-depth: 1
+          ref: ${{ github.event.inputs.git-ref }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build package
+        run: npm run build
+
+      - name: Build package
+        run: npm run build
+
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
