@@ -5,9 +5,9 @@ describe("BN.ts/Utils", () => {
   describe(".toString()", () => {
     describe("hex no padding", () => {
       it("should have same length as input", () => {
-        var hex = "1";
-        for (var i = 1; i <= 128; i++) {
-          var n = new BN(hex, 16);
+        let hex = "1";
+        for (let i = 1; i <= 128; i++) {
+          const n = new BN(hex, 16);
           assert.equal(n.toString(16).length, i);
           hex = hex + "0";
         }
@@ -15,32 +15,32 @@ describe("BN.ts/Utils", () => {
     });
     describe("binary padding", () => {
       it("should have a length of 256", () => {
-        var a = new BN(0);
+        const a = new BN(0);
 
         assert.equal(a.toString(2, 256).length, 256);
       });
     });
     describe("hex padding", () => {
       it("should have length of 8 from leading 15", () => {
-        var a = new BN("ffb9602", 16);
+        const a = new BN("ffb9602", 16);
 
         assert.equal(a.toString("hex", 2).length, 8);
       });
 
       it("should have length of 8 from leading zero", () => {
-        var a = new BN("fb9604", 16);
+        const a = new BN("fb9604", 16);
 
         assert.equal(a.toString("hex", 8).length, 8);
       });
 
       it("should have length of 8 from leading zeros", () => {
-        var a = new BN(0);
+        const a = new BN(0);
 
         assert.equal(a.toString("hex", 8).length, 8);
       });
 
       it("should have length of 64 from leading 15", () => {
-        var a = new BN(
+        const a = new BN(
           "ffb96ff654e61130ba8422f0debca77a0ea74ae5ea8bca9b54ab64aabf01003",
           16);
 
@@ -48,7 +48,7 @@ describe("BN.ts/Utils", () => {
       });
 
       it("should have length of 64 from leading zero", () => {
-        var a = new BN(
+        const a = new BN(
           "fb96ff654e61130ba8422f0debca77a0ea74ae5ea8bca9b54ab64aabf01003",
           16);
 
@@ -130,19 +130,19 @@ describe("BN.ts/Utils", () => {
 
   describe(".toArray()", () => {
     it("should return [ 0 ] for `0`", () => {
-      var n = new BN(0);
+      const n = new BN(0);
       assert.deepEqual(n.toArray("be"), [0]);
       assert.deepEqual(n.toArray("le"), [0]);
     });
 
     it("should zero pad to desired lengths", () => {
-      var n = new BN(0x123456);
+      const n = new BN(0x123456);
       assert.deepEqual(n.toArray("be", 5), [0x00, 0x00, 0x12, 0x34, 0x56]);
       assert.deepEqual(n.toArray("le", 5), [0x56, 0x34, 0x12, 0x00, 0x00]);
     });
 
     it("should throw when naturally larger than desired length", () => {
-      var n = new BN(0x123456);
+      const n = new BN(0x123456);
       assert.throws(() => {
         n.toArray("be", 2);
       }, /^Error: byte array longer than desired length$/);
@@ -151,14 +151,14 @@ describe("BN.ts/Utils", () => {
 
   describe(".toBuffer", () => {
     it("should return proper Buffer", () => {
-      var n = new BN(0x123456);
+      const n = new BN(0x123456);
       assert.equal(n.toBuffer("be", 5).toString("hex"), "0000123456");
       assert.deepEqual(n.toBuffer("le", 5).toString("hex"), "5634120000");
 
-      var s = "211e1566be78319bb949470577c2d4ac7e800a90d5104379478d8039451a8efe";
-      for (var i = 1; i <= s.length; i++) {
-        var slice = (i % 2 === 0 ? "" : "0") + s.slice(0, i);
-        var bn = new BN(slice, 16);
+      const s = "211e1566be78319bb949470577c2d4ac7e800a90d5104379478d8039451a8efe";
+      for (let i = 1; i <= s.length; i++) {
+        const slice = (i % 2 === 0 ? "" : "0") + s.slice(0, i);
+        const bn = new BN(slice, 16);
         assert.equal(bn.toBuffer("be").toString("hex"), slice);
         assert.equal(bn.toBuffer("le").toString("hex"), Buffer.from(slice, "hex").reverse().toString("hex"));
       }
@@ -180,7 +180,7 @@ describe("BN.ts/Utils", () => {
     });
 
     it("should throw when number exceeds 53 bits", () => {
-      var n = new BN(1).iushln(54);
+      const n = new BN(1).iushln(54);
       assert.throws(() => {
         n.toNumber();
       }, /^Error: Number can only safely store up to 53 bits$/);

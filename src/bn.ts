@@ -616,7 +616,7 @@ export class BigNumber {
   }
 
   mulf(num: BigNumber): BigNumber {
-    var out = new BigNumber(null);
+    const out = new BigNumber(null);
     out.words = new Array(this.length + num.length);
     return jumboMulTo(this, num, out);
   }
@@ -1908,7 +1908,7 @@ export class BigNumber {
     assert(!p.isZero());
 
     let a: BigNumber = this;
-    var b = p.clone();
+    const b = p.clone();
 
     if (a.negative !== 0) {
       a = a.umod(p);

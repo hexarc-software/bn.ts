@@ -73,10 +73,10 @@ describe("BN.ts/Binary", () => {
         "ff",
         "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
       ].forEach(function (hex) {
-        var bn = new BN(hex, 16);
-        var bl = bn.bitLength();
+        const bn = new BN(hex, 16);
+        const bl = bn.bitLength();
 
-        for (var i = 0; i < bl; ++i) {
+        for (let i = 0; i < bl; ++i) {
           assert.equal(bn.testn(i), true);
         }
 
@@ -84,7 +84,7 @@ describe("BN.ts/Binary", () => {
         assert.equal(bn.testn(bl), false);
       });
 
-      var xbits = "01111001010111001001000100011101" +
+      const xbits = "01111001010111001001000100011101" +
         "11010011101100011000111001011101" +
         "10010100111000000001011000111101" +
         "01011111001111100100011110000010" +
@@ -92,16 +92,16 @@ describe("BN.ts/Binary", () => {
         "01101001011110100001001111100110" +
         "001110010111";
 
-      var x = new BN(
+      const x = new BN(
         "23478905234580795234378912401239784125643978256123048348957342"
       );
-      for (var i = 0; i < x.bitLength(); ++i) {
+      for (let i = 0; i < x.bitLength(); ++i) {
         assert.equal(x.testn(i), (xbits.charAt(i) === "1"), "Failed @ bit " + i);
       }
     });
 
     it("should have short-cuts", () => {
-      var x = new BN("abcd", 16);
+      const x = new BN("abcd", 16);
       assert(!x.testn(128));
     });
   });
