@@ -1,4 +1,4 @@
-Modern big number implementation in TypeScript
+BigNum in TypeScript
 ===========
 # <img src="./bn.png" alt="bn.ts" width="128" height="128" />
 
@@ -7,7 +7,7 @@ Modern big number implementation in TypeScript
 [![Downloads](http://img.shields.io/npm/dm/bn.ts.svg)](https://npmjs.org/package/bn.ts)
 [![Downloads](http://img.shields.io/npm/dt/bn.ts.svg)](https://npmjs.org/package/bn.ts)
 
-A big number implementation in TypeScript. It's based on [bn.js](https://github.com/indutny/bn.js) but overhauled and refactored using modern JavaScript/TypeScript with type annotations out of the box.
+A modern big number implementation in TypeScript. It's based on [bn.js](https://github.com/indutny/bn.js) but overhauled and refactored using modern JavaScript/TypeScript with type annotations out of the box.
 
 ## Install with npm:
 
