@@ -2,10 +2,10 @@ BigNum in TypeScript
 ===========
 # <img src="./bn.png" alt="bn.ts" width="128" height="128" />
 
-[![Version](http://img.shields.io/npm/v/bn.ts.svg)](https://www.npmjs.org/package/bn.ts)
+[![Version](http://img.shields.io/npm/v/@hexarc/bn.ts.svg)](https://www.npmjs.org/package/@hexarc/bn.ts)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://badges.mit-license.org)
-[![Downloads](http://img.shields.io/npm/dm/bn.ts.svg)](https://npmjs.org/package/bn.ts)
-[![Downloads](http://img.shields.io/npm/dt/bn.ts.svg)](https://npmjs.org/package/bn.ts)
+[![Downloads](http://img.shields.io/npm/dm/@hexarc/bn.ts.svg)](https://npmjs.org/package/@hexarc/bn.ts)
+[![Downloads](http://img.shields.io/npm/dt/@hexarc/bn.ts.svg)](https://npmjs.org/package/@hexarc/bn.ts)
 
 A modern big number implementation in TypeScript. It's based on [bn.js](https://github.com/indutny/bn.js) but overhauled and refactored using modern JavaScript/TypeScript with type annotations out of the box.
 
