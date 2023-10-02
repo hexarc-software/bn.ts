@@ -8,7 +8,7 @@ export class MPrime {
   k: BigNumber;
   tmp: BigNumber;
 
-  public constructor(name: string, p: string) {
+  constructor(name: string, p: string) {
     this.name = name;
     this.p = new BigNumber(p, 16);
     this.n = this.p.bitLength();
@@ -22,7 +22,7 @@ export class MPrime {
     return tmp;
   }
 
-  public ireduce(num: BigNumber) {
+  ireduce(num: BigNumber) {
     // Assumes that `num` is less than `P^2`
     // num = HI * (2 ^ N - K) + HI * K + LO = HI * K + LO (mod P)
     let r = num;
@@ -65,25 +65,25 @@ export class MPrime {
 }
 
 class K256 extends MPrime {
-  public constructor() {
+  constructor() {
     super("k256", "ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff fffffffe fffffc2f");
   }
 }
 
 class P224 extends MPrime {
-  public constructor() {
+  constructor() {
     super("p224", "ffffffff ffffffff ffffffff ffffffff 00000000 00000000 00000001");
   }
 }
 
 class P192 extends MPrime {
-  public constructor() {
+  constructor() {
     super("p192", "ffffffff ffffffff ffffffff fffffffe ffffffff ffffffff");
   }
 }
 
 class P25519 extends MPrime {
-  public constructor() {
+  constructor() {
     super("25519", "7fffffffffffffff ffffffffffffffff ffffffffffffffff ffffffffffffffed");
   }
 }

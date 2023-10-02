@@ -133,6 +133,8 @@ export interface BN {
 
   mul(b: BN): BN;
 
+  mulf(b: BN): BN;
+
   imul(b: BN): BN;
 
   muln(b: number): BN;

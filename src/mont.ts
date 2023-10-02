@@ -9,7 +9,7 @@ export class Mont extends Red {
   rinv: BigNumber;
   minv: BigNumber;
 
-  public constructor(m: BigNumber | IPrimeName) {
+  constructor(m: BigNumber | IPrimeName) {
     super(m);
 
     this.shift = this.m.bitLength();

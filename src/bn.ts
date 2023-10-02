@@ -615,6 +615,12 @@ export class BigNumber {
     return this.clone().mulTo(value, this);
   }
 
+  mulf(num: BigNumber): BigNumber {
+    var out = new BigNumber(null);
+    out.words = new Array(this.length + num.length);
+    return jumboMulTo(this, num, out);
+  }
+
   muln(value: number): BigNumber {
     return this.clone().imuln(value);
   }
