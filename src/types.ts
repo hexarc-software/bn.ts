@@ -75,31 +75,31 @@ export interface BN {
 
   isZero(): boolean;
 
-  cmp(b: BN): CmpResult;
+  cmp(value: BN): CmpResult;
 
-  ucmp(b: BN): CmpResult;
+  ucmp(value: BN): CmpResult;
 
-  cmpn(b: number): CmpResult;
+  cmpn(value: number): CmpResult;
 
-  lt(b: BN): boolean;
+  lt(value: BN): boolean;
 
-  ltn(b: number): boolean;
+  ltn(value: number): boolean;
 
-  lte(b: BN): boolean;
+  lte(value: BN): boolean;
 
-  lten(b: number): boolean;
+  lten(value: number): boolean;
 
-  gt(b: BN): boolean;
+  gt(value: BN): boolean;
 
-  gtn(b: number): boolean;
+  gtn(value: number): boolean;
 
-  gte(b: BN): boolean;
+  gte(value: BN): boolean;
 
-  gten(b: number): boolean;
+  gten(value: number): boolean;
 
-  eq(b: BN): boolean;
+  eq(value: BN): boolean;
 
-  eqn(b: number): boolean;
+  eqn(value: number): boolean;
 
   toTwos(width: number): BN;
 
@@ -113,83 +113,83 @@ export interface BN {
 
   iabs(): BN;
 
-  add(b: BN): BN;
+  add(value: BN): BN;
 
-  iadd(b: BN): BN;
+  iadd(value: BN): BN;
 
-  addn(b: number): BN;
+  addn(value: number): BN;
 
-  iaddn(b: number): BN;
+  iaddn(value: number): BN;
 
-  sub(b: BN): BN;
+  sub(value: BN): BN;
 
-  isub(b: BN): BN;
+  isub(value: BN): BN;
 
-  subn(b: number): BN;
+  subn(value: number): BN;
 
-  isubn(b: number): BN;
+  isubn(value: number): BN;
 
   mulTo(num: BN, out: BN): void;
 
-  mul(b: BN): BN;
+  mul(value: BN): BN;
 
-  mulf(b: BN): BN;
+  mulf(value: BN): BN;
 
-  imul(b: BN): BN;
+  imul(value: BN): BN;
 
-  muln(b: number): BN;
+  muln(value: number): BN;
 
-  imuln(b: number): BN;
+  imuln(value: number): BN;
 
   sqr(): BN;
 
   isqr(): BN;
 
-  pow(b: BN): BN;
+  pow(exponent: BN): BN;
 
-  div(b: BN): BN;
+  div(value: BN): BN;
 
-  divn(b: number): BN;
+  divn(value: number): BN;
 
-  idivn(b: number): BN;
+  idivn(value: number): BN;
 
-  divmod(b: BN, mode?: "div" | "mod", positive?: boolean): { div: BN; mod: BN };
+  divmod(value: BN, mode?: "div" | "mod", positive?: boolean): { div: BN; mod: BN };
 
-  mod(b: BN): BN;
+  mod(value: BN): BN;
 
-  umod(b: BN): BN;
+  umod(value: BN): BN;
 
-  modn(b: number): number;
+  modn(value: number): number;
 
-  modrn(b: number): number;
+  modrn(value: number): number;
 
-  divRound(b: BN): BN;
+  divRound(value: BN): BN;
 
-  or(b: BN): BN;
+  or(value: BN): BN;
 
-  ior(b: BN): BN;
+  ior(value: BN): BN;
 
-  uor(b: BN): BN;
+  uor(value: BN): BN;
 
-  iuor(b: BN): BN;
+  iuor(value: BN): BN;
 
-  and(b: BN): BN;
+  and(value: BN): BN;
 
-  iand(b: BN): BN;
+  iand(value: BN): BN;
 
-  uand(b: BN): BN;
+  uand(value: BN): BN;
 
-  iuand(b: BN): BN;
+  iuand(value: BN): BN;
 
-  andln(b: number): number;
+  andln(value: number): number;
 
-  xor(b: BN): BN;
+  xor(value: BN): BN;
 
-  ixor(b: BN): BN;
+  ixor(value: BN): BN;
 
-  uxor(b: BN): BN;
+  uxor(value: BN): BN;
 
-  iuxor(b: BN): BN;
+  iuxor(value: BN): BN;
 
   setn(bit: number, value: boolean): BN;
 
@@ -235,19 +235,19 @@ export interface RedBN extends BN {
 
   fromRed(): BN;
 
-  redAdd(b: RedBN): RedBN;
+  redAdd(value: RedBN): RedBN;
 
-  redIAdd(b: RedBN): RedBN;
+  redIAdd(value: RedBN): RedBN;
 
-  redSub(b: RedBN): RedBN;
+  redSub(value: RedBN): RedBN;
 
-  redISub(b: RedBN): RedBN;
+  redISub(value: RedBN): RedBN;
 
-  redShl(num: number): RedBN;
+  redShl(value: number): RedBN;
 
-  redMul(b: RedBN): RedBN;
+  redMul(value: RedBN): RedBN;
 
-  redIMul(b: RedBN): RedBN;
+  redIMul(value: RedBN): RedBN;
 
   redSqr(): RedBN;
 
